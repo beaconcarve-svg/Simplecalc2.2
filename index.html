@@ -5,28 +5,42 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 400px;
+      max-width: 500px;
       margin: 50px auto;
+      text-align: center;
     }
     label {
       display: block;
       margin: 10px 0 5px;
+      text-align: left;
     }
     input {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       font-size: 16px;
     }
     .result {
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h2>Area Calculator (cm²)</h2>
+  <h2>Engraving Area Calculator</h2>
 
   <label for="width">Width (cm):</label>
   <input type="number" id="width" min="0" step="0.1">
@@ -36,6 +50,13 @@
 
   <div class="result">
     Area: <span id="area">0</span> cm²
+  </div>
+
+  <div id="buttons">
+    <button onclick="copyArea()">📋 Copy Area</button>
+    <a href="https://tally.so/r/your-form-id" target="_blank">
+      <button>➡️ Continue to Order Form</button>
+    </a>
   </div>
 
   <script>
@@ -48,6 +69,13 @@
       const height = parseFloat(heightInput.value) || 0;
       const area = width * height;
       areaDisplay.textContent = area.toFixed(2);
+    }
+
+    function copyArea() {
+      const area = areaDisplay.textContent;
+      navigator.clipboard.writeText(area)
+        .then(() => alert('Area copied to clipboard!'))
+        .catch(() => alert('Failed to copy.'));
     }
 
     widthInput.addEventListener('input', updateArea);
