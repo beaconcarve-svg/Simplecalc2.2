@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Area Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Area Calculator (cm²)</h2>
+
+  <label for="width">Width (cm):</label>
+  <input type="number" id="width" min="0" step="0.1">
+
+  <label for="height">Height (cm):</label>
+  <input type="number" id="height" min="0" step="0.1">
+
+  <div class="result">
+    Area: <span id="area">0</span> cm²
+  </div>
+
+  <script>
+    const widthInput = document.getElementById('width');
+    const heightInput = document.getElementById('height');
+    const areaDisplay = document.getElementById('area');
+
+    function updateArea() {
+      const width = parseFloat(widthInput.value) || 0;
+      const height = parseFloat(heightInput.value) || 0;
+      const area = width * height;
+      areaDisplay.textContent = area.toFixed(2);
+    }
+
+    widthInput.addEventListener('input', updateArea);
+    heightInput.addEventListener('input', updateArea);
+  </script>
+
+</body>
+</html>
